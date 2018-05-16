@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.naren.lendage.data.entities.Converter"/>
+        <variable name="transaction" type="com.naren.lendage.data.entities.UnitTransaction" />
+        <variable name="user" type="com.naren.lendage.data.entities.User"/>
+        <variable name="listener" type="com.naren.lendage.ui.listener.AddTransactionClickListener"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:minHeight="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="238dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/hint_amount"
+            android:inputType="numberDecimal"
+            android:text="@={Converter.fromFloat(transaction.amount)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.208" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="37dp"
+            android:layout_marginEnd="148dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginRight="148dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="37dp"
+            android:text="@string/save"
+            android:onClick="@{(view)->listener.save(transaction)}"
+            style="@style/Widget.AppCompat.Button.Colored"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="com.naren.lendage.data.entities.User"/>
+        <import type="com.naren.lendage.data.entities.Converter"/>
+        <import type="com.naren.lendage.data.LoanType.Type"/>
+        <import type="android.view.View"/>
+        <variable name="user" type="User"/>
+        <variable name="listener" type="com.naren.lendage.ui.listener.AddUserBindingClickListener"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
+                android:text="@={user.name}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/hint_name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@={Converter.fromFloat(user.amount)}"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:hint="@string/hint_amount"
+                android:layout_marginTop="8dp"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
+                android:text="@={Converter.fromInteger(user.type.interest)}"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="@string/hint_interest"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:inputType="number" />
+
+            <Spinner
+                android:id="@+id/loan_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:selectedItemPosition="@={Converter.fromLoanType(user.type.type)}"
+                android:onItemSelected="@{(parent,view,position,id)->listener.item(position)}"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:entries="@array/loan_types" />
+
+            <Spinner
+                android:id="@+id/period_type"
+                android:entries="@array/period_types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="20dp"
+                android:selectedItemPosition="@={Converter.fromPeriod(user.type.period)}"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp" />
+
+
+            <EditText
+                android:id="@+id/number_of_installments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="@={Converter.fromInteger(user.type.installments)}"
+                android:ems="10"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/date"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@={Converter.fromDate(user.time)}"
+                android:layout_marginEnd="20dp"
+                android:onClick="@{()->listener.selectDate()}"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/save"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:onClick="@{()->listener.save(user)}"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/save" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Lendage</string>
+    <string name="action_settings">Settings</string>
+    <array name="loan_types">
+        <item>Interest</item>
+        <item>EMI</item>
+        <item>None</item>
+    </array>
+
+    <array name="period_types">
+        <item>MONTH</item>
+        <item>WEEK</item>
+        <item>YEAR</item>
+    </array>
+
+    <string name="amount_format">Total Amount : &#x20B9;%.2f</string>
+    <string name="interest_format">%s-@rate %d%%</string>
+    <string name="balance_format">Balance &#x20B9;%.2f</string>
+    <string name="amount">&#x20B9;%.2f</string>
+    <string name="hint_amount">&#x20B9; 2000.00</string>
+    <string name="hint_name">First-name Last-name</string>
+    <string name="hint_interest">2%</string>
+    <string name="save">Save</string>
+
+    <string name="warning_delete_message">Are you sure, you want to delete?</string>
+    <string name="warning_delete_title_transaction">Delete Transaction!</string>
+    <string name="warning_delete_title_user">Delete User!</string>
+</resources>
